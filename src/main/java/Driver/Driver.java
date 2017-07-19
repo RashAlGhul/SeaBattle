@@ -11,22 +11,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class Driver {
     private static WebDriver driver;
 
-    public static WebDriver Driver(String driverType) {
-        if (driver == null)
-            switch (driverType) {
-                case "FIREFOX":
-                    DesiredCapabilities capabilities= DesiredCapabilities.firefox();
-                    driver = new FirefoxDriver(capabilities);
-                    break;
-                case "CHROME":
-                    driver = new ChromeDriver(DesiredCapabilities.chrome());
-                    break;
-                default:
-                    driver = new ChromeDriver();
-            }
-        return driver;
-    }
-
     public static WebDriver Driver() {
         if (driver == null) {
             driver = new ChromeDriver(DesiredCapabilities.chrome());
