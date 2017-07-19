@@ -1,6 +1,7 @@
 package Steps;
 
 import AI.BasicAI;
+import Exceptions.TooLongConnectionToServerException;
 import PageObject.BattleShipPageObject;
 import org.openqa.selenium.WebDriver;
 
@@ -18,7 +19,7 @@ public class BattleShipPageSteps {
         battleShip = new BattleShipPageObject(driver);
     }
 
-    public void startGame() {
+    public void startGame() throws TooLongConnectionToServerException{
         battleShip.NavigateHere(configData.getString("baseUrl"));
         int countRandomTimes = Integer.parseInt(configData.getString("countRandomSetChipLocation"));
         battleShip.clickRandomTimesOnRandomShipsElement(countRandomTimes);

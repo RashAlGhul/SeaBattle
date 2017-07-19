@@ -19,7 +19,7 @@ public class BattleShipPageObject extends BasePage {
     public BattleShipPageObject(WebDriver driver){
         super(driver);
     }
-    protected WebDriverWait wait = new WebDriverWait(driver, 90);
+    private WebDriverWait wait = new WebDriverWait(driver, 90);
 
     private By randomShips = By.xpath("//*[contains(text(), 'Случайным образом')]");
     private By playGame = By.xpath("//*[contains(text(), 'Играть')]");
@@ -27,9 +27,9 @@ public class BattleShipPageObject extends BasePage {
     private By enemyBoard = By.xpath("//*[@class='battlefield battlefield__rival']");
     private By playerBoard = By.xpath("//*[@class='battlefield battlefield__self']");
 
-    private By enemyShipsHorisontal = By.xpath("//*[@class='battlefield battlefield__rival']//td//div[@class='ship-box ship-box__h']");
+    private By enemyShipsHorizontally = By.xpath("//*[@class='battlefield battlefield__rival']//td//div[@class='ship-box ship-box__h']");
     private By enemyShipsVertical = By.xpath("//*[@class='battlefield battlefield__rival']//td//div[@class='ship-box ship-box__v']");
-    private By playerShipsHorisontal = By.xpath("//*[@class='battlefield battlefield__self']//td//div[@class='ship-box ship-box__h']");
+    private By playerShipsHorizontally = By.xpath("//*[@class='battlefield battlefield__self']//td//div[@class='ship-box ship-box__h']");
     private By playerShipsVertical = By.xpath("//*[@class='battlefield battlefield__self']//td//div[@class='ship-box ship-box__v']");
     private By errorMessage = By.xpath("//div[@class='notifications']//div[@class='notification-message']");
 
@@ -77,25 +77,21 @@ public class BattleShipPageObject extends BasePage {
         updateShips();
         WebElement playerBoardElement = FindElementSafe(playerBoard);
         WebElement enemyBoardElement = FindElementSafe(enemyBoard);
-        if ((enemyShipsKilled.size() == 9 && playerShipsKilled.size() == 9)
-                || (playerBoardElement == null && (enemyBoardElement ==null)))
-            return true;
-        return false;
+        return (enemyShipsKilled.size() == 9 && playerShipsKilled.size() == 9)
+                || (playerBoardElement == null && (enemyBoardElement == null));
     }
 
     private void updateShips(){
         enemyShipsKilled = new ArrayList<>();
-        enemyShipsKilled.addAll(driver.findElements(enemyShipsHorisontal));
+        enemyShipsKilled.addAll(driver.findElements(enemyShipsHorizontally));
         enemyShipsKilled.addAll(driver.findElements(enemyShipsVertical));
         playerShipsKilled = new ArrayList<>();
-        playerShipsKilled.addAll(driver.findElements(playerShipsHorisontal));
+        playerShipsKilled.addAll(driver.findElements(playerShipsHorizontally));
         playerShipsKilled.addAll(driver.findElements(playerShipsVertical));
     }
 
     public boolean isPlayerWin(){
-        if (enemyShipsKilled.size() == 9)
-            return true;
-        return false;
+        return enemyShipsKilled.size() == 9;
     }
 
     public String getErrorMessage(){

@@ -1,3 +1,4 @@
+import Exceptions.TooLongConnectionToServerException;
 import Steps.BattleShipPageSteps;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,7 +10,7 @@ public class BattleShipPageTest extends BaseTest {
     private BattleShipPageSteps battleShipSteps;
 
     @Test
-    public void BattleShipPageCheck() {
+    public void BattleShipPageCheck() throws TooLongConnectionToServerException {
         battleShipSteps = new BattleShipPageSteps(driver);
         battleShipSteps.startGame();
         battleShipSteps.playGame();
