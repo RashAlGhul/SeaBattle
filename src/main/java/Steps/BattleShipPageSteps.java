@@ -10,9 +10,9 @@ import java.util.ResourceBundle;
  * Created by e.dima on 14.7.17.
  */
 public class BattleShipPageSteps {
-    BattleShipPageObject battleShip;
-    BasicAI ai;
-    ResourceBundle configData = ResourceBundle.getBundle("ConfigData");
+    private BattleShipPageObject battleShip;
+    private BasicAI ai;
+    private ResourceBundle configData = ResourceBundle.getBundle("ConfigData");
 
     public BattleShipPageSteps(WebDriver driver) {
         battleShip = new BattleShipPageObject(driver);
@@ -30,11 +30,12 @@ public class BattleShipPageSteps {
     public void playGame()
     {
         ai = new BasicAI(battleShip.getEnemyCells(),battleShip.getEnemyBoard());
-        int maxCountHit =0;
-        while (true) {
+        int maxCountHit = 100;
+        while (maxCountHit>0) {
             if (!battleShip.isGameOver()) {
                 battleShip.waitForStrike();
                 ai.StrikeCell();
+                maxCountHit--;
             } else break;
         }
     }

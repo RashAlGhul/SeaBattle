@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
  * Created by e.dima on 14.7.17.
  */
 public class BattleShipPageTest extends BaseTest {
-    public BattleShipPageSteps battleShipSteps;
+    private BattleShipPageSteps battleShipSteps;
 
     @Test
     public void BattleShipPageCheck() {
