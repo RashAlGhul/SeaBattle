@@ -128,17 +128,4 @@
         </build>
     </profile>
     </profiles>
-
-    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
-    <!--<dependencies>
-        
-
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>RELEASE</version>
-    </dependency>
-
-</dependencies>-->
-
 </project>
